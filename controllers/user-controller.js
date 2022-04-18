@@ -12,7 +12,6 @@ const userController = {
     User.find({})
       .populate({
         path: "thoughts",
-        path: "friends",
         select: "-__v",
       })
       .select("-__v")

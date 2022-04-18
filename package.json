@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/EsteMaeLeo/nashvegas-social-network#readme",
   "dependencies": {
+    "date-and-time": "^2.3.1",
     "express": "^4.17.3",
     "mongoose": "^6.2.11"
   }

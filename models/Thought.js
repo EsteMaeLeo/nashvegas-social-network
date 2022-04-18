@@ -1,10 +1,10 @@
 const { Schema, model, Types } = require("mongoose");
-//const dateFormat = require("../utils/dateFormat");
+const dateFormat = require("../utils/date-format");
 
 const ReactionSchema = new Schema(
   {
-    // set custom id to avoid confusion with parent comment's _id field
-    replyId: {
+    // set custom id to avoid confusion with parent thoughts's _id field
+    reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId(),
     },
@@ -41,7 +41,7 @@ const ThoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // get: (createdAtVal) => dateFormat(createdAtVal),
+      get: (createdAtVal) => dateFormat(createdAtVal),
     },
     username: {
       type: String,
