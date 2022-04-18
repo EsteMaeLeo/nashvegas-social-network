@@ -19,8 +19,18 @@ const UserSchema = new Schema(
       default: Date.now,
       // get: (createdAt) => dateFormat(createdAt),
     },
-    thoughts: [],
-    friends: [],
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+      },
+    ],
+    friends: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   {
     toJSON: {
@@ -31,13 +41,13 @@ const UserSchema = new Schema(
   }
 );
 
-// UserSchema.virtual("commentCount").get(function () {
-//   //return this.comments.length;
-//   return this.comments.reduce(
-//     (total, comment) => total + comment.replies.length + 1,
-//     0
-//   );
-// });
+UserSchema.virtual("friendCount").get(function () {
+  //   return this.friends.reduce(
+  //     (total, user) => total + user.friends.length + 1,
+  //     0
+  //   );
+  return this.friends.length;
+});
 
 //create the uaer Model using UserSchema
 const User = model("USer", UserSchema);
