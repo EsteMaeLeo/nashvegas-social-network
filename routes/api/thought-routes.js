@@ -12,9 +12,9 @@ const {
   //   removeReply,
 } = require("../../controllers/thought-controller");
 
-router.route("/").get(getAllThought);
+router.route("/").get(getAllThought).post(addThought);
 
-router.route("/:userId").post(addThought);
+//router.route("/:userId").post(addThought);
 
 router
   .route("/:id")
