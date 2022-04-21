@@ -20,7 +20,7 @@ router
   .delete(deleteThought);
 
 router.route("/:thoughtId/reactions").post(addReaction).delete(removeReaction);
-router.route("/:thoughtId/reactions/:idReaction").delete(removeReaction);
+//router.route("/:thoughtId/reactions").delete(removeReaction);
 // router.route("/:pizzaId/:commentId").delete(removeComment);
 
 // router.route("/:pizzaId/:commentId").put(addReply).delete(removeComment);
