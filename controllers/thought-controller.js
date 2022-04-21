@@ -9,8 +9,8 @@ const thoughtController = {
       })
       .select("-__v")
       .sort({ _id: -1 })
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => {
+      .then(dbThoughtData => res.json(dbThoughtData))
+      .catch(err => {
         console.log(err);
         res.status(400).json(err);
       });
@@ -23,7 +23,7 @@ const thoughtController = {
         select: "-__v",
       })
       .select("-__v")
-      .then((dbThoughtData) => {
+      .then(dbThoughtData => {
         if (!dbThoughtData) {
           res
             .status(404)
@@ -32,7 +32,7 @@ const thoughtController = {
         }
         res.json(dbThoughtData);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         res.status(400).json(err);
       });
@@ -40,17 +40,17 @@ const thoughtController = {
   //create thought
   addThought({ params, body }, res) {
     console.log(body);
-    let id = body.userid;
-    console.log(id);
+    let username = body.username;
+    console.log(username);
     Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: id },
+          { username: username },
           { $push: { thoughts: _id } },
           { new: true, runValidators: true }
         );
       })
-      .then((dbThoughtData) => {
+      .then(dbThoughtData => {
         if (!dbThoughtData) {
           res
             .status(404)
@@ -59,7 +59,7 @@ const thoughtController = {
         }
         res.json(dbThoughtData);
       })
-      .catch((err) => res.json(err));
+      .catch(err => res.json(err));
   },
 
   addReaction({ params, body }, res) {
@@ -71,7 +71,7 @@ const thoughtController = {
       { $push: { reactions: body } },
       { new: true }
     )
-      .then((dbThoughtData) => {
+      .then(dbThoughtData => {
         if (!dbThoughtData) {
           res
             .status(404)
@@ -80,7 +80,7 @@ const thoughtController = {
         }
         res.json(dbThoughtData);
       })
-      .catch((err) => res.json(err));
+      .catch(err => res.json(err));
   },
 
   removeReaction({ params }, res) {
@@ -90,8 +90,8 @@ const thoughtController = {
       { $pull: { reactions: { reactionId: params.idReaction } } },
       { new: true }
     )
-      .then((dbThoughtData) => res.json(dbThoughtData))
-      .catch((err) => res.json(err));
+      .then(dbThoughtData => res.json(dbThoughtData))
+      .catch(err => res.json(err));
   },
 
   updateThought({ params, body }, res) {
@@ -99,7 +99,7 @@ const thoughtController = {
       new: true,
       runValidators: true,
     })
-      .then((dbThoughtData) => {
+      .then(dbThoughtData => {
         if (!dbThoughtData) {
           res
             .status(404)
@@ -108,7 +108,7 @@ const thoughtController = {
         }
         res.json(dbThoughtData);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
         res.status(400).json(err);
       });
@@ -116,7 +116,7 @@ const thoughtController = {
 
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.id })
-      .then((dbThoughtData) => {
+      .then(dbThoughtData => {
         if (!dbThoughtData) {
           res
             .status(404)
@@ -130,7 +130,7 @@ const thoughtController = {
           { new: true }
         );
       })
-      .then((dbUser) => {
+      .then(dbUser => {
         if (!dbUser) {
           res
             .status(404)
@@ -141,7 +141,7 @@ const thoughtController = {
           "Thought delete and removed into the user thoughts asociation"
         );
       })
-      .catch((err) => res.json(err));
+      .catch(err => res.json(err));
   },
 };
 module.exports = thoughtController;
