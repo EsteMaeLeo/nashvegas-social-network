@@ -23,6 +23,8 @@ To install necessary dependencies, run the following command:
 > npm i
 
 ## Walkthrough
+
+- The walkthrough video must show all of the technical acceptance criteria Part One: https://watch.screencastify.com/v/rNAp0hfSPKW8nOHYenRt Part Two: https://watch.screencastify.com/v/F3O2uczMxXYbSOov2nDp
 - First part User: user list, user by ID, create, delete and update user. Thoughts: list all and by ID: https://watch.screencastify.com/v/QLzJ2WMs3QgEpNMZRoCC
 - Thoughts: create, delete and update, Friends list: create and delete, Reactions: create and delete: https://watch.screencastify.com/v/IN7DY5bfItmvn1eKQiJG
 - Bonus Application deletes a user's associated thoughts when the user is deleted:  https://watch.screencastify.com/v/CTbmkptco2yVuedCJZ1D
